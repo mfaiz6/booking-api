@@ -9,6 +9,8 @@ import roomsRoute from './routes/rooms.js'
 
 import cookieParser from 'cookie-parser'
 
+// import cors from 'cors'
+
 const app = express()
 dotenv.config()
 
@@ -36,15 +38,16 @@ mongoose.connection.on("connected", () => {
 })
 
 
-
+//to communicate with client-side
+// app.use(cors()) we are not using this because we are using proxy for now
 
 //to communicate via json objects with api
 app.use(express.json())
 
-//middlewares to take to respective routes
-
+//fot jwt implementation 
 app.use(cookieParser())
 
+//middlewares to take to respective routes
 app.use("/api/auth", authRoute)
 app.use("/api/users", usersRoute)
 app.use("/api/hotels", hotelsRoute)
